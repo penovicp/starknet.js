@@ -1,0 +1,24 @@
+name: Manual instanceof Test
+on: workflow_dispatch
+
+jobs:
+  tests:
+    name: Run test on ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    services:
+      devnet:
+        image: shardlabs/starknet-devnet:0.4.2-seed0
+        ports:
+          - 5050:5050
+    defaults:
+      run:
+        working-directory: ./error-test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: 'npm'
+      - run: npm ci --ignore-scripts
+      - run: node index.cjs
+      - run: node index.mjs
