@@ -1,0 +1,16 @@
+name: Workflow Info
+on:
+  pull_request:
+    branches:
+      - test-error
+  push:
+    branches:
+      - test-error
+      
+jobs:
+  info:
+    name: Log Info
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ github.event_name }}
+    
