@@ -16,6 +16,7 @@ jobs:
       
   next:
     name: Conditional Job
+    needs: [info]
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
