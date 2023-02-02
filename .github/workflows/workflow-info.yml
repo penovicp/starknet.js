@@ -9,16 +9,18 @@ on:
       
 jobs:
   skip_check:
+    name: Skip check
     runs-on: ubuntu-latest
     outputs:
-      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+      should_skip: ${{ steps.skip_duplicate.outputs.should_skip }}
     steps:
-      - uses: fkirc/skip-duplicate-actions@v5
+      - id: skip_duplicate
+        uses: fkirc/skip-duplicate-actions@v5
     
   tests:
     name: Run test on ${{ matrix.name }}
     needs: [skip_check]
-    if: needs.pre_job.outputs.should_skip != 'true'
+    if: needs.skip_check.outputs.should_skip != 'true'
     runs-on: ubuntu-latest
     services:
       devnet:
@@ -54,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ github.event_name }}
-      - run: echo ${{ needs.pre_job.outputs.should_skip }}
+      - run: echo ${{ needs.skip_check.outputs.should_skip }}
       
   next:
     name: Conditional Job
