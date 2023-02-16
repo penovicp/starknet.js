@@ -1,20 +1,11 @@
-name: PR/Push Test-Error
+name: PR/Push Main
 on:
   pull_request:
     branches:
-      - test-error
+      - main
   push:
     branches:
-      - test-error
-  workflow_dispatch:
-    inputs:
-      early-exit:
-        description: 'Early exit'
-        type: boolean
-        default: false
-      exit-status:
-        type: boolean
-        default: false
+      - main
 
 jobs:
   skip_check:
@@ -31,18 +22,21 @@ jobs:
     needs: [skip_check]
     if: needs.skip_check.outputs.should_skip != 'true'
     strategy:
+      max-parallel: 1 # needed until we get a seperate account for the rpc provider, until then running them in parallel would result in a nonce issue
       matrix:
-        name: [sequencer-devnet, rpc-devnet]
+        name: [sequencer-goerli, rpc-goerli]
         include:
-          - name: sequencer-devnet
-            TEST_PROVIDER_BASE_URL: http://127.0.0.1:5050/
-          - name: rpc-devnet
-            TEST_RPC_URL: http://127.0.0.1:5050/rpc
+          - name: sequencer-goerli
+            TEST_PROVIDER_BASE_URL: https://alpha4-2.starknet.io
+          - name: rpc-goerli
+            ENABLE_TEST_RPC_URL: true
 
     uses: ./.github/workflows/_test.yml
     secrets:
       TEST_PROVIDER_BASE_URL: ${{ matrix.TEST_PROVIDER_BASE_URL }}
-      TEST_RPC_URL: ${{ matrix.TEST_RPC_URL }}
+      TEST_RPC_URL: ${{ matrix.ENABLE_TEST_RPC_URL && secrets.TEST_RPC_URL }}
+      TEST_ACCOUNT_PRIVATE_KEY: ${{ secrets.TEST_ACCOUNT_PRIVATE_KEY }}
+      TEST_ACCOUNT_ADDRESS: ${{ secrets.TEST_ACCOUNT_ADDRESS }}
 
   release:
     name: Release

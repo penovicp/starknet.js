@@ -1,20 +1,13 @@
-name: PR/Push Test-Error
+name: PR/Push Development
 on:
   pull_request:
     branches:
-      - test-error
+      - beta
+      - develop
   push:
     branches:
-      - test-error
-  workflow_dispatch:
-    inputs:
-      early-exit:
-        description: 'Early exit'
-        type: boolean
-        default: false
-      exit-status:
-        type: boolean
-        default: false
+      - beta
+      - develop
 
 jobs:
   skip_check:

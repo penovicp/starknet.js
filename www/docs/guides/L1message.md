@@ -6,9 +6,9 @@ sidebar_position: 13
 
 You can exchange messages between L1 & L2 networks :
 
-- L2 Starknet mainnet ↔️ L1 Ethereum.
-- L2 Starknet testnet 1 & 2 ↔️ L1 Goerli ETH testnet.
-- L2 local starknet devnet ↔️ L1 local ETH testnet (Ganache, ...).
+- L2 StarkNet mainnet ↔️ L1 Ethereum.
+- L2 StarkNet testnet 1 & 2 ↔️ L1 Goerli ETH testnet.
+- L2 local StarkNet devnet ↔️ L1 local ETH testnet (Ganache, ...).
 
 You can find explanation of the global mechanism [here](https://docs.starknet.io/documentation/architecture_and_concepts/L1-L2_Communication/messaging-mechanism/).
 
@@ -21,7 +21,7 @@ To send a message from L1 to L2, you need a solidity smart contract in the L1 ne
 ```solidity
 /**
     Sends a message to an L2 contract.
-    This function is payable, the payed amount is the message fee.
+    This function is payable, the paid amount is the message fee.
     Returns the hash of the message and the nonce of the message.
 */
 function sendMessageToL2(
