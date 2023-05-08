@@ -1,4 +1,4 @@
-name: PR/Push Main
+name: '[PR|Push] Main'
 on:
   pull_request:
     branches:
@@ -16,6 +16,9 @@ jobs:
     steps:
       - id: skip_duplicate
         uses: fkirc/skip-duplicate-actions@v5
+        with:
+          cancel_others: 'true'
+          paths_ignore: '["www"]'
 
   tests:
     name: Run test on ${{ matrix.name }}
