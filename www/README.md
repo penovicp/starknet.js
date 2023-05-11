@@ -6,6 +6,7 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 
 ```bash
 yarn    # or npm i
+yarn    # or npm i
 ```
 
 ## Local Development
