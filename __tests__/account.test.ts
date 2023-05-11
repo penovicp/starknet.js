@@ -4,6 +4,7 @@ import typedDataExample from '../__mocks__/typedDataExample.json';
 import { Account, Contract, Provider, TransactionStatus, ec, hash, stark } from '../src';
 import { uint256 } from '../src/utils/calldata/cairo';
 import { parseUDCEvent } from '../src/utils/events';
+
 import { calculateContractAddressFromHash, feeTransactionVersion } from '../src/utils/hash';
 import { cleanHex, hexToDecimalString, toBigInt, toHex } from '../src/utils/num';
 import { encodeShortString } from '../src/utils/shortString';
