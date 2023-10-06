@@ -21,7 +21,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/provider/response.ts:148](https://github.com/0xs34n/starknet.js/blob/develop/src/types/provider/response.ts#L148)
+[src/types/provider/response.ts:148](https://github.com/starknet-io/starknet.js/blob/develop/src/types/provider/response.ts#L148)
 
 ---
 
@@ -31,4 +31,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/provider/response.ts:149](https://github.com/0xs34n/starknet.js/blob/develop/src/types/provider/response.ts#L149)
+[src/types/provider/response.ts:149](https://github.com/starknet-io/starknet.js/blob/develop/src/types/provider/response.ts#L149)

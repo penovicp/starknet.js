@@ -20,7 +20,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/signer.ts:6](https://github.com/0xs34n/starknet.js/blob/develop/src/types/signer.ts#L6)
+[src/types/signer.ts:6](https://github.com/starknet-io/starknet.js/blob/develop/src/types/signer.ts#L6)
 
 ---
 
@@ -30,7 +30,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/signer.ts:7](https://github.com/0xs34n/starknet.js/blob/develop/src/types/signer.ts#L7)
+[src/types/signer.ts:7](https://github.com/starknet-io/starknet.js/blob/develop/src/types/signer.ts#L7)
 
 ---
 
@@ -40,7 +40,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/signer.ts:8](https://github.com/0xs34n/starknet.js/blob/develop/src/types/signer.ts#L8)
+[src/types/signer.ts:8](https://github.com/starknet-io/starknet.js/blob/develop/src/types/signer.ts#L8)
 
 ---
 
@@ -54,7 +54,7 @@ Required.nonce
 
 #### Defined in
 
-[src/types/lib/index.ts:100](https://github.com/0xs34n/starknet.js/blob/develop/src/types/lib/index.ts#L100)
+[src/types/lib/index.ts:100](https://github.com/starknet-io/starknet.js/blob/develop/src/types/lib/index.ts#L100)
 
 ---
 
@@ -68,7 +68,7 @@ Required.maxFee
 
 #### Defined in
 
-[src/types/lib/index.ts:101](https://github.com/0xs34n/starknet.js/blob/develop/src/types/lib/index.ts#L101)
+[src/types/lib/index.ts:101](https://github.com/starknet-io/starknet.js/blob/develop/src/types/lib/index.ts#L101)
 
 ---
 
@@ -82,4 +82,4 @@ Required.version
 
 #### Defined in
 
-[src/types/lib/index.ts:102](https://github.com/0xs34n/starknet.js/blob/develop/src/types/lib/index.ts#L102)
+[src/types/lib/index.ts:102](https://github.com/starknet-io/starknet.js/blob/develop/src/types/lib/index.ts#L102)

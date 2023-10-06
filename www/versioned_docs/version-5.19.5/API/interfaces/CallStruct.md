@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/lib/index.ts:181](https://github.com/0xs34n/starknet.js/blob/develop/src/types/lib/index.ts#L181)
+[src/types/lib/index.ts:181](https://github.com/starknet-io/starknet.js/blob/develop/src/types/lib/index.ts#L181)
 
 ---
 
@@ -24,7 +24,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/lib/index.ts:182](https://github.com/0xs34n/starknet.js/blob/develop/src/types/lib/index.ts#L182)
+[src/types/lib/index.ts:182](https://github.com/starknet-io/starknet.js/blob/develop/src/types/lib/index.ts#L182)
 
 ---
 
@@ -34,4 +34,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/types/lib/index.ts:183](https://github.com/0xs34n/starknet.js/blob/develop/src/types/lib/index.ts#L183)
+[src/types/lib/index.ts:183](https://github.com/starknet-io/starknet.js/blob/develop/src/types/lib/index.ts#L183)

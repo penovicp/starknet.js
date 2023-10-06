@@ -14,7 +14,7 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/provider/default.ts:35](https://github.com/0xs34n/starknet.js/blob/develop/src/provider/default.ts#L35)
+[src/provider/default.ts:35](https://github.com/starknet-io/starknet.js/blob/develop/src/provider/default.ts#L35)
 
 ---
 
@@ -24,4 +24,4 @@ custom_edit_url: null
 
 #### Defined in
 
-[src/provider/default.ts:36](https://github.com/0xs34n/starknet.js/blob/develop/src/provider/default.ts#L36)
+[src/provider/default.ts:36](https://github.com/starknet-io/starknet.js/blob/develop/src/provider/default.ts#L36)
