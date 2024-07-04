@@ -1,5 +1,5 @@
 {
-  "name": "starknet",
+  "name": "@penovicp/starknet",
   "version": "6.11.0",
   "description": "JavaScript library for Starknet",
   "main": "dist/index.js",
