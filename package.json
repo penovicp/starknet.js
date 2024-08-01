@@ -1,6 +1,7 @@
 {
-  "name": "starknet",
-  "version": "6.12.1",
+  "name": "@penovicp/starknet",
+  "version": "6.10.2-beta.3",
+  "repository": "github:penovicp/starknet.js",
   "description": "JavaScript library for Starknet",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -49,7 +50,6 @@
     "zk",
     "rollup"
   ],
-  "repository": "github:starknet-io/starknet.js",
   "license": "MIT",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.18.2",
