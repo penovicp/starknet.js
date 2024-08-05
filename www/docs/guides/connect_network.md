@@ -171,20 +171,20 @@ The Goerli Testnet is no longer in service.
 ### Sepolia Testnet
 
 ```typescript
-// Infura node RPC 0.7.0 for Sepolia Testnet :
+// Infura node RPC 0.7.0 for Sepolia Testnet:
 const providerInfuraSepoliaTestnet = new RpcProvider({
   nodeUrl: 'https://starknet-sepolia.infura.io/v3/' + infuraKey,
   specVersion: '0.7',
 });
-// Public Nethermind node RPC 0.8.0 for Sepolia Testnet (0_6 & 0_7 also available) :
+// Public Nethermind node RPC 0.8.0 for Sepolia Testnet (0_6 & 0_7 also available):
 const providerSepoliaTestnetNethermindPublic = new RpcProvider({
   nodeUrl: 'https://free-rpc.nethermind.io/sepolia-juno/v0_8',
 });
-// Public Blast node RPC 0.8.0 for Sepolia Testnet (0_6 & 0_7 also available) :
+// Public Blast node RPC 0.8.0 for Sepolia Testnet (0_6 & 0_7 also available):
 const providerSepoliaTestnetBlastPublic = new RpcProvider({
   nodeUrl: 'https://starknet-sepolia.public.blastapi.io/rpc/v0_8',
 });
-// Public Lava node RPC 0.8.0 for Sepolia Testnet (0_6 & 0_7 also available) :
+// Public Lava node RPC 0.8.0 for Sepolia Testnet (0_6 & 0_7 also available):
 const providerSepoliaTestnetBlastPublic = new RpcProvider({
   nodeUrl: 'https://rpc.starknet-testnet.lava.build/rpc/v0_8',
 });
