@@ -53,3 +53,7 @@ html[class*="docs-version-4"] div[class*="announcementBar"] {
 .hidden {
   display: none;
 }
+
+li.theme-doc-sidebar-item-category-level-2 {
+  text-transform: capitalize;
+}
