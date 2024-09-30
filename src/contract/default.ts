@@ -1,5 +1,4 @@
-import type { Abi as AbiKanabiV1 } from 'abi-wan-kanabi-v1';
-import type { Abi as AbiKanabiV2, TypedContract as AbiWanTypedContractV2 } from 'abi-wan-kanabi-v2';
+import type { Abi as AbiKanabi, TypedContract as AbiWanTypedContract } from 'abi-wan-kanabi';
 
 import { AccountInterface } from '../account';
 import { ProviderInterface, defaultProvider } from '../provider';
@@ -16,14 +15,13 @@ import {
   ContractOptions,
   EstimateFeeResponse,
   FunctionAbi,
-  GetTransactionReceiptResponse,
   InvokeFunctionResponse,
   InvokeOptions,
   InvokeTransactionReceiptResponse,
   ParsedEvents,
   RawArgs,
   Result,
-  StructAbi,
+  AbiStruct,
   ValidateType,
 } from '../types';
 import assert from '../utils/assert';
@@ -31,9 +29,10 @@ import { CallData, cairo } from '../utils/calldata';
 import { createAbiParser } from '../utils/calldata/parser';
 import { getAbiEvents, parseEvents as parseRawEvents } from '../utils/events/index';
 import { cleanHex } from '../utils/num';
-import { ContractInterface, TypedContractV1 } from './interface';
+import { ContractInterface } from './interface';
+import type { GetTransactionReceiptResponse } from '../utils/transactionReceipt';
 
-export type TypedContractV2<TAbi extends AbiKanabiV2> = AbiWanTypedContractV2<TAbi> & Contract;
+export type TypedContractV2<TAbi extends AbiKanabi> = AbiWanTypedContract<TAbi> & Contract;
 
 export const splitArgsAndOptions = (args: ArgsOrCalldataWithOptions) => {
   const options = [
@@ -125,7 +124,7 @@ export class Contract implements ContractInterface {
 
   deployTransactionHash?: string;
 
-  protected readonly structs: { [name: string]: StructAbi };
+  protected readonly structs: { [name: string]: AbiStruct };
 
   protected readonly events: AbiEvents;
 
@@ -349,11 +348,7 @@ export class Contract implements ContractInterface {
     return this.providerOrAccount.getContractVersion(this.address);
   }
 
-  public typedv1<TAbi extends AbiKanabiV1>(tAbi: TAbi): TypedContractV1<TAbi> {
-    return this as TypedContractV1<typeof tAbi>;
-  }
-
-  public typedv2<TAbi extends AbiKanabiV2>(tAbi: TAbi): TypedContractV2<TAbi> {
+  public typedv2<TAbi extends AbiKanabi>(tAbi: TAbi): TypedContractV2<TAbi> {
     return this as unknown as TypedContractV2<typeof tAbi>;
   }
 }

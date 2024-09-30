@@ -28,6 +28,7 @@ import {
 } from '../src';
 import { hexToDecimalString } from '../src/utils/num';
 import { encodeShortString } from '../src/utils/shortString';
+import { isString } from '../src/utils/typed';
 import {
   TEST_TX_VERSION,
   compiledC1Account,
@@ -337,7 +338,7 @@ describe('Cairo 1', () => {
       const status = await cairo1Contract.echo_struct({
         val: 'simple',
       });
-      if (typeof status.val === 'string') {
+      if (isString(status.val)) {
         expect(shortString.decodeShortString(status.val)).toBe('simple');
       }
     });
@@ -532,7 +533,7 @@ describe('Cairo 1', () => {
       const comp6a = CallData.compile([cairoResult1]);
       const res6a = (await cairo1Contract.call('enum_result_input', comp6a)) as bigint;
       const res7 = (await cairo1Contract.enum_result_input(
-        new CairoResult<Order, BigNumberish>(CairoResultVariant.Ok, myOrder)
+        new CairoResult<Order, number | bigint>(CairoResultVariant.Ok, myOrder)
       )) as bigint;
       const res7a = (await cairo1Contract.enum_result_input(
         CallData.compile([new CairoResult<Order, BigNumberish>(CairoResultVariant.Ok, myOrder)])
@@ -802,7 +803,7 @@ describe('Cairo 1', () => {
       );
       const shouldBe: types.ParsedEvents = [
         {
-          EventRegular: {
+          'hello_res_events_newTypes::hello_res_events_newTypes::HelloStarknet::EventRegular': {
             simpleKeyVariable,
             simpleKeyStruct,
             simpleKeyArray,
@@ -824,7 +825,7 @@ describe('Cairo 1', () => {
       );
       const shouldBe: types.ParsedEvents = [
         {
-          EventNested: {
+          'hello_res_events_newTypes::hello_res_events_newTypes::HelloStarknet::EventNested': {
             nestedKeyStruct,
             nestedDataStruct,
           },
@@ -840,7 +841,7 @@ describe('Cairo 1', () => {
       const anotherKeyVariable = 100n;
       const shouldBe: types.ParsedEvents = [
         {
-          EventRegular: {
+          'hello_res_events_newTypes::hello_res_events_newTypes::HelloStarknet::EventRegular': {
             simpleKeyVariable,
             simpleKeyStruct,
             simpleKeyArray,
@@ -850,7 +851,7 @@ describe('Cairo 1', () => {
           },
         },
         {
-          EventRegular: {
+          'hello_res_events_newTypes::hello_res_events_newTypes::HelloStarknet::EventRegular': {
             simpleKeyVariable: anotherKeyVariable,
             simpleKeyStruct,
             simpleKeyArray,
@@ -884,7 +885,7 @@ describe('Cairo 1', () => {
     test('parse tx returning multiple different events', async () => {
       const shouldBe: types.ParsedEvents = [
         {
-          EventRegular: {
+          'hello_res_events_newTypes::hello_res_events_newTypes::HelloStarknet::EventRegular': {
             simpleKeyVariable,
             simpleKeyStruct,
             simpleKeyArray,
@@ -894,7 +895,7 @@ describe('Cairo 1', () => {
           },
         },
         {
-          EventNested: {
+          'hello_res_events_newTypes::hello_res_events_newTypes::HelloStarknet::EventNested': {
             nestedKeyStruct,
             nestedDataStruct,
           },
@@ -973,7 +974,7 @@ describe('Cairo 1', () => {
       const callD2 = CallData.compile({ mess: message });
       expect(callD2).toEqual(expectedResult);
       const callD3 = CallData.compile({ mess: byteArray.byteArrayFromString('Take care.') });
-      expect(callD3).toEqual(['1', '0', '398475857363345939260718', '10']);
+      expect(callD3).toEqual(['0', '398475857363345939260718', '10']);
       const str1 = await stringContract.get_string();
       expect(str1).toBe(
         "Cairo has become the most popular language for developers + charizards !@#$%^&*_+|:'<>?~`"
