@@ -1,5 +1,5 @@
 import { NetworkName, StarknetChainId } from '../constants';
-import { LibraryError, RpcError } from '../utils/errors';
+import { HttpError, LibraryError, RpcError } from '../utils/errors';
 import {
   AccountInvocationItem,
   AccountInvocations,
@@ -131,7 +131,7 @@ export class RpcChannel {
       throw otherError;
     }
     if (otherError) {
-      throw Error(otherError.message);
+      throw new LibraryError(otherError.message ?? 'Unexpected error');
     }
   }
 
@@ -150,12 +150,14 @@ export class RpcChannel {
         return result as RPC.Methods[T]['result'];
       }
 
-      const rawResult = await this.fetch(method, params, (this.requestId += 1));
-      const { error, result } = await rawResult.json();
+      const response = await this.fetch(method, params, (this.requestId += 1));
+      if (!response.ok)
+        this.errorHandler(method, params, undefined, await HttpError.fromResponse(response));
+      const { error, result } = await response.json();
       this.errorHandler(method, params, error);
       return result as RPC.Methods[T]['result'];
     } catch (error: any) {
-      this.errorHandler(method, params, error?.response?.data, error);
+      this.errorHandler(method, params, undefined, error);
       throw error;
     }
   }
