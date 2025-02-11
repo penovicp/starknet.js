@@ -28,10 +28,10 @@ jobs:
         ports:
           - 5050:5050
 
-    env:
-      TEST_RPC_URL: ${{ secrets.TEST_RPC_URL }}
-      TEST_ACCOUNT_PRIVATE_KEY: ${{ secrets.TEST_ACCOUNT_PRIVATE_KEY }}
-      TEST_ACCOUNT_ADDRESS: ${{ secrets.TEST_ACCOUNT_ADDRESS }}
+    # env:
+    #   TEST_RPC_URL: ${{ secrets.TEST_RPC_URL }}
+    #   TEST_ACCOUNT_PRIVATE_KEY: ${{ secrets.TEST_ACCOUNT_PRIVATE_KEY }}
+    #   TEST_ACCOUNT_ADDRESS: ${{ secrets.TEST_ACCOUNT_ADDRESS }}
 
     steps:
       - run: echo ${{ secrets.TEST_RPC_URL }} | base64
