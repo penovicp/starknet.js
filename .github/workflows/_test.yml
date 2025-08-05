@@ -40,7 +40,7 @@ jobs:
           - 5050:5050
 
     env:
-      PROTOCOL: ${{ inputs.protocol == 'WS' && 'wss' || 'https' }}
+      PROTOCOL: ${{ inputs.protocol == 'WS' && 'wss' || inputs.protocol == 'RPC' && 'https' || '' }}
       NODE: ${{ inputs.node == 'Juno' && 'juno' || inputs.node == 'Pathfinder' && 'pathfinder' || '' }}
       VERSION: ${{ inputs.version }}
 
@@ -64,6 +64,18 @@ jobs:
           echo "NODE_URL=$FORMATED_URL" >> "$GITHUB_OUTPUT"
         env:
           FORMATED_URL: ${{ format(env.NODE_URL, env.PROTOCOL, env.NODE, env.VERSION) }}
+      - id: url-resolution
+        name: url-resolution
+        run: |
+          echo "DEVNET_RPC_URL=$DEVNET_RPC_URL" >> "$GITHUB_OUTPUT"
+          echo "DEVNET_WS_URL=$DEVNET_WS_URL" >> "$GITHUB_OUTPUT"
+          echo "REMOTE_RPC_URL=$REMOTE_RPC_URL" >> "$GITHUB_OUTPUT"
+          echo "REMOTE_WS_URL=$REMOTE_WS_URL" >> "$GITHUB_OUTPUT"
+        env:
+          DEVNET_RPC_URL: ${{ inputs.use-devnet && 'http://127.0.0.1:5050/rpc' || null }}
+          DEVNET_WS_URL: ${{ inputs.use-devnet && 'ws://127.0.0.1:5050/ws' || null }}
+          REMOTE_RPC_URL: ${{ inputs.protocol != 'WS' && steps.env-modification.outputs.NODE_URL || null }}
+          REMOTE_WS_URL: ${{ inputs.protocol == 'WS' && (env.NODE == 'juno' && secrets.TEST_WS_JUNO || steps.env-modification.outputs.NODE_URL) || null }}
       - id: run-tests
         name: run tests
         run: |
@@ -71,7 +83,7 @@ jobs:
           [[ "${{ inputs.protocol }}" == "WS" ]] && args+=( '__tests__/WebSocket' )
           npm run test:coverage "${args[@]}"
         env:
-          TEST_RPC_URL: ${{ inputs.protocol != 'WS' && steps.env-modification.outputs.NODE_URL || null }}
-          TEST_WS_URL: ${{ inputs.protocol == 'WS' && (env.NODE == 'juno' && secrets.TEST_WS_JUNO || steps.env-modification.outputs.NODE_URL) || null }}
+          TEST_RPC_URL: ${{ steps.url-resolution.outputs.DEVNET_RPC_URL || steps.url-resolution.outputs.REMOTE_RPC_URL }}
+          TEST_WS_URL: ${{ steps.url-resolution.outputs.DEVNET_WS_URL || steps.url-resolution.outputs.REMOTE_WS_URL }}
           TEST_ACCOUNT_PRIVATE_KEY: ${{ secrets.TEST_ACCOUNT_PRIVATE_KEY }}
           TEST_ACCOUNT_ADDRESS: ${{ secrets.TEST_ACCOUNT_ADDRESS }}

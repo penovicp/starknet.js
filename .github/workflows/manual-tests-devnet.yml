@@ -15,11 +15,9 @@ jobs:
       matrix:
         include:
           - name: rpc-devnet
-            TEST_NODE_URL: http://127.0.0.1:5050/rpc
+            USE_DEVNET: true
 
     uses: ./.github/workflows/_test.yml
     with:
-      use-devnet: ${{ matrix.TEST_NODE_URL != '' }}
+      use-devnet: ${{ matrix.USE_DEVNET }}
       ignore-scripts: ${{ inputs.ignore-scripts }}
-    secrets:
-      TEST_NODE_URL: ${{ matrix.TEST_NODE_URL }}
