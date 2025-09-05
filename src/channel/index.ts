@@ -1,5 +1,7 @@
-export * as RPC07 from './rpc_0_7';
-export * as RPC08 from './rpc_0_8';
+export * as RPC08 from './rpc_0_8_1';
+export * as RPC09 from './rpc_0_9_0';
 // Default channel
-export * from './rpc_0_8';
-export * from './ws_0_8';
+export * from './rpc_0_9_0';
+export * from './ws/ws_0_9';
+export * from './ws/subscription';
+export { TimeoutError, WebSocketNotConnectedError } from '../utils/errors';

@@ -1,16 +1,15 @@
 /**
- * Main
+ * Main Classes
  */
 export * from './wallet';
 export * from './account';
+export * from './deployer';
 export * from './contract';
+export * from './paymaster';
 export * from './provider';
 export * from './signer';
 export * from './channel';
-
-// TODO: decide on final export style
 export * from './types';
-export * as types from './types';
 
 /**
  * Utils
@@ -31,16 +30,16 @@ export * as shortString from './utils/shortString';
 export * as typedData from './utils/typedData';
 export * as ec from './utils/ec';
 export * as starknetId from './utils/starknetId';
+export * as paymaster from './utils/paymaster';
 export * as provider from './utils/provider';
 export * as selector from './utils/hash/selector';
 export * as events from './utils/events';
 export * as outsideExecution from './utils/outsideExecution';
 export * as src5 from './utils/src5';
+export * from './utils/resolve';
 export * from './utils/batch';
 export * from './utils/responseParser';
-export * from './utils/cairoDataTypes/uint256';
-export * from './utils/cairoDataTypes/uint512';
-export * from './utils/cairoDataTypes/fixedArray';
+export * from './utils/cairoDataTypes';
 export * from './utils/address';
 export * from './utils/calldata';
 export * from './utils/calldata/enum';
