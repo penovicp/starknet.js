@@ -11,6 +11,10 @@ export default async (): Promise<Config> => {
     globalSetup: './__tests__/config/jestGlobalSetup.ts',
     sandboxInjectedGlobals: ['Math'],
 
+    testEnvironmentOptions: {
+      globalsCleanup: 'on',
+    },
+
     transform: {
       '^.+\\.(t|j)sx?$': '@swc/jest',
     },
