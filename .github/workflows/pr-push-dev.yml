@@ -29,6 +29,7 @@ jobs:
   skip_check:
     name: Skip check
     runs-on: ubuntu-latest
+    environment: dev
     outputs:
       should_skip: ${{ steps.skip_duplicate.outputs.should_skip }}
     steps:
@@ -63,3 +64,5 @@ jobs:
       && github.event_name == 'push'
     uses: ./.github/workflows/_release.yml
     secrets: inherit
+    with:
+      dry-run: ${{ vars.IS_DRY_RUN }}
