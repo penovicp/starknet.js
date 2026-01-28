@@ -45,11 +45,4 @@ export * from './utils/contract';
 export * from './utils/transactionReceipt';
 export * as wallet from './wallet/connect';
 
-/**
- * Deprecated
- */
-/* eslint-disable import/first */
-import * as num from './utils/num';
-
-/** @deprecated prefer the 'num' naming */
-export const number = num;
+// fix 1
