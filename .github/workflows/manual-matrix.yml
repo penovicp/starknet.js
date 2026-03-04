@@ -1,0 +1,23 @@
+name: '[Manual] Matrix'
+on:
+  workflow_dispatch:
+    inputs:
+      ignore-scripts:
+        description: 'Ignore scripts'
+        type: boolean
+        default: false
+
+jobs:
+  tests:
+    name: Total ${{ strategy.job-total }}; Index ${{ strategy.job-index }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      fail-fast: true
+      matrix:
+        node: [node1, node2]
+        protocol: [protocolA, protocolB]
+
+    steps:
+      - run: |
+          echo "Total ${{ strategy.job-total }}; Index ${{ strategy.job-index }}"
