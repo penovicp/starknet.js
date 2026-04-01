@@ -1,5 +1,14 @@
-name: '[Manual] Documentation Deploy Pages'
-on: workflow_dispatch
+name: '[Manual|PR|Push] Documentation Deploy Pages'
+on: 
+  workflow_dispatch:
+  # TODO test token
+  release:
+    types: [published]
+  push:
+    branches:
+      - develop
+    paths:
+      - 'www/**'
 
 # populate the following environment variables for the "github-pages" environment
 # - default:
